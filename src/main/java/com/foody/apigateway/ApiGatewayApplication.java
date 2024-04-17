@@ -13,24 +13,5 @@ public class ApiGatewayApplication {
 		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
 
-//	@Bean
-//	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-//		return builder.routes()
-//				.route(r -> r.path("/recipe/**")
-//						.filters(f -> f
-//							.prefixPath("/api")
-//							.addResponseHeader("X-Powered-By","Foody Gateway Service")
-//						)
-//						.uri("http://localhost:8081")
-//				)
-//				.route(r -> r.path("/user/**")
-//						.filters(f -> f
-//								.prefixPath("/api")
-//								.addResponseHeader("X-Powered-By","Foody Gateway Service")
-//						)
-//						.uri("http://localhost:8082")
-//				)
-//				.build();
-//	}
 
 }
