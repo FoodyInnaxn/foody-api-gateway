@@ -1,0 +1,127 @@
+#eureka.client.serviceUrl.defaultZone=http://eureka:password@localhost:8761/eureka
+#eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+#spring.application.name=api-gateway
+#logging.level.root= INFO
+#logging.level.org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator= INFO
+#logging.level.org.springframework.cloud.gateway= TRACE
+#
+### Recipe Service Route
+#spring.cloud.gateway.routes[0].id=recipe-service
+#spring.cloud.gateway.routes[0].uri=lb://recipe-service
+#spring.cloud.gateway.routes[0].predicates[0]=Path=/api/recipe/**
+#
+### User Service Route
+#spring.cloud.gateway.routes[1].id=user-service
+#spring.cloud.gateway.routes[1].uri=lb://user-service
+#spring.cloud.gateway.routes[1].predicates[0]=Path=/api/user/**
+#
+### Comment Service Route
+#spring.cloud.gateway.routes[2].id=comment-service
+#spring.cloud.gateway.routes[2].uri=lb://comment-service
+#spring.cloud.gateway.routes[2].predicates[0]=Path=/api/comment/**
+#
+### Search Service Route
+#spring.cloud.gateway.routes[3].id=search-service
+#spring.cloud.gateway.routes[3].uri=lb://search-service
+#spring.cloud.gateway.routes[3].predicates[0]=Path=/api/search/**
+#
+### Saved Service Route
+#spring.cloud.gateway.routes[4].id=saved-recipe-service
+#spring.cloud.gateway.routes[4].uri=lb://saved-recipe-service
+#spring.cloud.gateway.routes[4].predicates[0]=Path=/api/favorites/**
+#
+### Discover Server Route
+#spring.cloud.gateway.routes[5].id=discovery-server
+#spring.cloud.gateway.routes[5].uri=http://localhost:8761
+#spring.cloud.gateway.routes[5].predicates[0]=Path=/eureka/web
+#spring.cloud.gateway.routes[5].filters[0]=SetPath=/
+#
+### Discover Server Static Resources Route
+#spring.cloud.gateway.routes[6].id=discovery-server-static
+#spring.cloud.gateway.routes[6].uri=http://localhost:8761
+#spring.cloud.gateway.routes[6].predicates[0]=Path=/eureka/**
+
+#spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8181/realms/spring-boot-microservices-realm
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: auth-service
+            uri: lb://auth-service
+            predicates:
+              - Path=/auth/foody/**
+          - id: auth-service-update-user
+            uri: lb://auth-service
+            predicates:
+              - Path=/auth/update/{id}
+            filters:
+              - ValidationFilter=
+#         Recipe paths
+          - id: recipe-service-getters
+            uri: lb://recipe-service
+            predicates:
+              - Path=/recipe/view/**
+          - id: recipe-service-operations
+            uri: lb://recipe-service
+            predicates:
+              - Path=/recipe/{id}/operations/**
+            filters:
+              - ValidationFilter=
+          - id: user-service
+            uri: lb://user-service
+            predicates:
+              - Path=/user/**
+#          Comment service
+          - id: comment-service-getters
+            uri: lb://comment-service
+            predicates:
+              - Path=/comment/recipe/**
+          - id: comment-service
+            uri: lb://comment-service
+            predicates:
+              - Path=/comment/{id}/operations/**
+            filters:
+              - ValidationFilter=
+#          Search service
+          - id: search-service
+            uri: lb://search-service
+            predicates:
+              - Path=/api/search/**
+#          Saved Recipes
+          - id: saved-recipe-service
+            uri: lb://saved-recipe-service
+            predicates:
+              - Path=/favorites/**
+            filters:
+              - ValidationFilter=
+#         Eureka
+          - id: discovery-server
+            uri: http://localhost:8761
+            predicates:
+              - Path=/eureka/web
+            filters:
+              - SetPath=/
+          - id: discovery-server-static
+            uri: http://localhost:8761
+            predicates:
+              - Path=/eureka/**
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        cloud:
+          gateway:
+            route:
+              RouteDefinitionRouteLocator: INFO
+            gateway: TRACE

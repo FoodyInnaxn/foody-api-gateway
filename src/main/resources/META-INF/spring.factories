@@ -1,0 +1,1 @@
+org.springframework.cloud.gateway.server.mvc.filter.FilterSupplier=com.foody.apigateway.config.FilterSupplier
