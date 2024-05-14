@@ -45,7 +45,7 @@
 
 eureka:
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://localhost:8761/eureka
 
 spring:
@@ -95,7 +95,7 @@ spring:
           - id: search-service
             uri: lb://search-service
             predicates:
-              - Path=/api/search/**
+              - Path=/search/**
 #          Saved Recipes
           - id: saved-recipe-service
             uri: lb://saved-recipe-service
