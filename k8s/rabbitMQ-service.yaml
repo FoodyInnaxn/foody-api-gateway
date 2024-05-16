@@ -7,7 +7,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: rabbitmq
-  name: rabbitMQ
+  name: rabbitmq
 spec:
   ports:
     - name: "5672"
