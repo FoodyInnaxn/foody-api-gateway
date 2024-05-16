@@ -65,7 +65,7 @@ spring:
               - Path=/auth/update/{id}
             filters:
               - ValidationFilter=
-#         Recipe paths
+          #         Recipe paths
           - id: recipe-service-getters
             uri: lb://recipe-service
             predicates:
@@ -80,7 +80,7 @@ spring:
             uri: lb://user-service
             predicates:
               - Path=/user/**
-#          Comment service
+          #          Comment service
           - id: comment-service-getters
             uri: lb://comment-service
             predicates:
@@ -91,14 +91,14 @@ spring:
               - Path=/comment/{id}/operations/**
             filters:
               - ValidationFilter=
-#          Search service
+          #          Search service
           - id: search-service
             uri: lb://search-service
             predicates:
               - Path=/search/**
-#          Saved Recipes
+          #          Saved Recipes
           - id: saved-recipe-service
-            uri: http://host.docker.internal:8065
+            uri: lb://saved-recipe-service
             predicates:
               - Path=/favorites/**
             filters:
