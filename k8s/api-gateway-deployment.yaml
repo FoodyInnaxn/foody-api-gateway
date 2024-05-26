@@ -28,7 +28,7 @@ spec:
         - env:
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-service:8761/eureka
-          image: innaxn/foody-api-gateway:latest
+          image: innaxn/foody-api-gateway:testing-latest
           name: api-gateway
           ports:
             - containerPort: 8080
