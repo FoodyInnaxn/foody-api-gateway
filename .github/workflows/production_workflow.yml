@@ -70,6 +70,6 @@ jobs:
         with:
           namespace: 'default'
           manifests: |
-            prod.deployment.yaml
+            ./k8s_deployment/
           images: innaxn/foody-api-gateway:production-latest
           pull-images: true
