@@ -4,8 +4,8 @@ metadata:
   name: datadog
 spec:
   global:
-    registry: docker.io/datadog
-    site: datadoghq.com
+    clusterName: foody-datadog-cluster
+    site: datadoghq.eu
     credentials:
       apiSecret:
         secretName: datadog-secret
@@ -14,9 +14,14 @@ spec:
     logCollection:
       enabled: true
       containerCollectAll: true
-    cws:
+    liveContainerCollection:
       enabled: true
-    usm:
+    orchestratorExplorer:
       enabled: true
-    npm:
+    eventCollection:
       enabled: true
+    kubeStateMetricsCore:
+      enabled: true
+    dogstatsd:
+      hostPortConfig:
+        enabled: true
