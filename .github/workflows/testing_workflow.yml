@@ -54,7 +54,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Apply Deployment
-        run: kubectl apply -f ./k8s/.
+        run: |
+          kubectl apply -f ./datadog/.
+          kubectl apply -f ./k8s/.
       - name: Wait 2min (to be replaced with health-check)
         uses: juliangruber/sleep-action@v2.0.3
         with:
