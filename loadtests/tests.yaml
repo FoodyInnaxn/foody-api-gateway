@@ -33,7 +33,7 @@ before:
     - post:
         url: "/auth/foody/login"
         json:
-          username: "test@gmail.com"
+          email: "test@gmail.com"
           password: "5422"
         capture:
           json: "$.token"
