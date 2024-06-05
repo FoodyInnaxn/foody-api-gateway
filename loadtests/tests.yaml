@@ -23,5 +23,3 @@ scenarios:
           url: "/recipe/view"
       - get:
           url: "/recipe/view/4"
-      - get:
-          url: "/recipe/view/5"
