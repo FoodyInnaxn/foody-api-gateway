@@ -65,4 +65,4 @@ jobs:
     needs: redeploy
     steps:
     - name: Load Test
-      run: artillery run ./loadtests/tests.yml --record --key ${{ secrets.ARTILLERY_KEY }}
+      run: artillery run ./loadtests/tests.yaml --record --key ${{ secrets.ARTILLERY_KEY }}
