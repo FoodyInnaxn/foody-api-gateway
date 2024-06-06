@@ -27,30 +27,30 @@ config:
     skipHeader: true
 
 
-before:
-  flow:
-    - log: 'Get auth token'
-    - post:
-        url: "/auth/foody/login"
-        json:
-          email: "test@gmail.com"
-          password: "5422"
-        capture:
-          json: "$.token"
-          as: "token"
+# before:
+#   flow:
+#     - log: 'Get auth token'
+#     - post:
+#         url: "/auth/foody/login"
+#         json:
+#           email: "test@gmail.com"
+#           password: "5422"
+#         capture:
+#           json: "$.token"
+#           as: "token"
 
 scenarios:
   - name: "Create new recipe & get recipes"
     flow:
-      - post:
-          url: "/recipe/1/operations/create"
-          formData:
-            title: "{{ title }}"
-            description: "{{ description }}"
-            time: "{{ time }}"
-            steps: "{{ steps }}"
-            ingredients: "{{ ingredients }}"
-          headers:
-            authorization: 'Bearer {{ token }}'
+      # - post:
+      #     url: "/recipe/1/operations/create"
+      #     formData:
+      #       title: "{{ title }}"
+      #       description: "{{ description }}"
+      #       time: "{{ time }}"
+      #       steps: "{{ steps }}"
+      #       ingredients: "{{ ingredients }}"
+          # headers:
+          #   authorization: 'Bearer {{ token }}'
       - get:
           url: "/recipe/view"
